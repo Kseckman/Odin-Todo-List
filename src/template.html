@@ -7,39 +7,61 @@
 </head>
 <body>
     <div class="container">
-        <h1>header</h1>
-        <form action="">
-            <label for="project">Make new project set left</label>
-            <input type="text" id="project" name="project" placeholder="project">
-        </form>
-        <form action="">
-            <!-- hide or set to modal. put form inside of the projects -->
-            <label for="title">Title</label>
-            <input type="text" id="title" placeholder="title" name="title">
-            <label for="description">Description</label>
-            <input type="text" id="description" placeholder="description" name="description">
-            <label for="due-date">Due Date</label>
-            <input type="text" id="due-date" placeholder="due date" name="due-date">
-            <label for="notes">Notes</label>
-            <textarea name="notes" id="notes" name="notes"></textarea>
-            <button type="submit">Submit</button>
-        </form>
-        <div class="project-list">
-            <!-- when project is open can make and see todos -->
-            <h2>Projects set to left</h2>
-            <h3>project one</h3>
-            <h3>project two</h3>
+        <div class="header">
+            <h1>header</h1>
+        </div>
+        <div class="projects">
+            <form action="">
+                <h3>Projects</h3>
+                <label for="project">New: </label>
+                <input type="text" id="project" name="project" placeholder="project">
+                <button type="submit">New</button>
+            </form>
+            <div class="project-list">
+                <!-- when project is open can make and see todos -->
+                <h2>Projects List</h2>
+                <p>project one</p>
+                <p>project two</p>
+            </div>
         </div>
         <div class="todo-list">
             <div class="project">
-                <h1 class="project-title">this project</h1>
-                <div class="todo">
-                    <h2 class="todo-title">title</h2>
-                    <p class="todo-description">description</p>
-                    <p class="todo-duedate">due date</p>
-                    <p class="todo-note">notes</p>
-                    <button class="complete">complete</button>
-                    <button class="delete">delete</button>
+                <h1>specific project</h1>
+                <button class="add-todo">Add Todoo</button>
+
+                <form action="" class="hide todo-form">
+                    <!-- hide or set to modal. put form inside of the projects -->
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="title" name="title">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="description" name="description">
+                    <label for="due-date">Due Date</label>
+                    <input type="text" id="due-date" placeholder="due date" name="due-date">
+                    <label for="notes">Notes</label>
+                    <textarea name="notes" id="notes" name="notes"></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <div class="todo-section">
+                    <div class="todo-card">
+                        <h2 class="todo-title">title</h2>
+                        <p class="todo-description">description</p>
+                        <p class="todo-duedate">due date</p>
+                        <p class="todo-note">notes</p>
+                        <div class="todo-buttons">
+                            <button class="complete">complete</button>
+                            <button class="delete">delete</button>
+                        </div>
+                    </div>
+                    <div class="todo-card">
+                        <h2 class="todo-title">title</h2>
+                        <p class="todo-description">description</p>
+                        <p class="todo-duedate">due date</p>
+                        <p class="todo-note">notes</p>
+                        <div class="todo-buttons">
+                            <button class="complete">complete</button>
+                            <button class="delete">delete</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

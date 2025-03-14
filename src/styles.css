@@ -1,3 +1,74 @@
 body{
     background-color: azure;
+    margin: 0;
+}
+
+.container{
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'projects todos'
+    ;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 100px 1fr;
+}
+
+.header{
+    background-color: grey;
+    grid-area: header;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.projects{
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    grid-area: projects;
+    padding: 20px;
+}
+
+.todo-list{
+    grid-area: todos;
+    padding: 20px;
+}
+
+.todo-form{
+    background-color: grey;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.hide{
+    /* display: none; */
+}
+
+.add-todo{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: green;
+}
+
+
+.todo-section{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding-top: 10px;
+}
+
+.todo-card{
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
 }
