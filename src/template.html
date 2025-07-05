@@ -11,37 +11,38 @@
             <h1>header</h1>
         </div>
         <div class="projects">
-            <form action="">
+            <form action="" id="project-form">
                 <h3>Projects</h3>
                 <label for="project">New: </label>
-                <input type="text" id="project" name="project" placeholder="project">
-                <button type="submit">New</button>
+                <input type="text" id="project-title" name="project" placeholder="project">
+                <button type="submit" id="project-button">New</button>
             </form>
+            <h2>Projects List</h2>
             <div class="project-list">
                 <!-- when project is open can make and see todos -->
-                <h2>Projects List</h2>
                 <p>project one</p>
                 <p>project two</p>
             </div>
+            <button class="" id="all-todos">All Todos</button>
         </div>
         <div class="todo-list">
             <div class="project">
                 <h1>specific project</h1>
-                <button class="add-todo">Add Todoo</button>
-
-                <form action="" class="hide todo-form">
+                <button class="add-todo" id="#show-form">Show form</button>
+                <form action="" id="todo-form" class="hide todo-form" >
                     <!-- hide or set to modal. put form inside of the projects -->
-                    <label for="title">Title</label>
-                    <input type="text" id="title" placeholder="title" name="title">
-                    <label for="description">Description</label>
-                    <input type="text" id="description" placeholder="description" name="description">
+                    <label for="todo-title">Title </label>
+                    <input type="text" id="todo-title" placeholder="title" name="title">
+                    <label for="todo-description">Description</label>
+                    <input type="text" id="todo-description" placeholder="description" name="todo-description">
                     <label for="due-date">Due Date</label>
                     <input type="text" id="due-date" placeholder="due date" name="due-date">
-                    <label for="notes">Notes</label>
-                    <textarea name="notes" id="notes" name="notes"></textarea>
-                    <button type="submit">Submit</button>
+                    <label for="todo-notes">Notes</label>
+                    <textarea name="todo-notes" id="todo-notes" name="notes"></textarea>
+                    <button  id="todo-button">Submit</button>
                 </form>
-                <div class="todo-section">
+
+                <div class="todo-section" id="todo-div">
                     <div class="todo-card">
                         <h2 class="todo-title">title</h2>
                         <p class="todo-description">description</p>
@@ -63,6 +64,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

@@ -72,3 +72,8 @@ body{
     padding: 10px;
     border-radius: 10px;
 }
+
+.todo-complete{
+    background-color: rgb(51, 133, 51);
+    text-decoration: line-through;
+}
