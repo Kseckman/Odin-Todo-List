@@ -2,6 +2,7 @@ import "./styles.css"
 //local storage objects-------------
 let todoData= JSON.parse(localStorage.getItem('todo'))|| [];
 let projectData = JSON.parse(localStorage.getItem('project'))|| [];
+let currentProject = 'default';
 //Project selectors------------------
 const projectForm = document.querySelector('#project-form')
 const projectTitle = document.querySelector('#project-title')
@@ -65,12 +66,6 @@ function displayTodo(){
         `
     });
 }
-//add delete---UPDATE moved to event listener
-// window.deleteTodo = (todoDel)=>{
-//     todoDel.parentElement.parentElement.remove()
-//     saveTodoToStorage()
-// }
-
 //edit todo---
 
 //clear todo form inputs reset---
@@ -95,7 +90,7 @@ todoForm .addEventListener('submit',(e)=>{
     e.preventDefault()
     createTodo()
 })
-
+//delete todo---
 todoDiv.addEventListener('click', (e)=>{
     if(e.target.classList.contains('delete')){
         const card = e.target.closest('.todo-card')
@@ -105,7 +100,7 @@ todoDiv.addEventListener('click', (e)=>{
          saveTodoToStorage()
     }
 })
-
+//complete todo css indicator---
 todoDiv.addEventListener('click', (e)=>{
     if(e.target.classList.contains('complete')){
         const card = e.target.closest('.todo-card')
@@ -135,6 +130,7 @@ function createProject(){
 
    saveProjectToStorage()
    displayProject()
+   projectTitle.value =''
    console.log('project data---------------')
    console.log(projectData)
    console.table(projectData)
@@ -150,8 +146,29 @@ function displayProject(){
     });
 }
 
-//select specific project to display todos----
-
+//select specific project from projectList to display todos----
+function displayCurrentProjectTodo(e){
+    todoDiv.innerHTML = ''
+    let currentProject = e.target.closest('.project-item').id
+    projectName.innerHTML = currentProject
+    let project = projectData.find(p=> p.projectTitle === currentProject)
+    console.log(project.projectTodos)
+    project.projectTodos.forEach(({todoTitle, todoDescription, dueDate, todoNotes, id, completed}) => {
+         todoDiv.innerHTML += `
+            <div class="todo-card ${completed?'todo-complete':''}" id='${id}'>
+                    <h2 class="todo-title">${todoTitle}</h2>
+                    <p class="todo-description">Desc: ${todoDescription}</p>
+                    <p class="todo-duedate">Due: ${dueDate}</p>
+                    <p class="todo-note">Notes:<hr> ${todoNotes}</p>
+                    <div class="todo-buttons">
+                        <button class="complete">complete</button>
+                        <button class="delete">delete</button>
+                    </div>
+            </div>
+        `
+    });
+    console.log(currentProject)
+}
 //view all todos from all projects-----
 function displayAllTodos(){
 
@@ -172,3 +189,5 @@ projectList.addEventListener('click', (e)=>{
         saveProjectToStorage()
     }
 })
+
+projectList.addEventListener('click', displayCurrentProjectTodo)
