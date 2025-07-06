@@ -8,6 +8,7 @@ const projectTitle = document.querySelector('#project-title')
 const projectBtn = document.querySelector('#project-button')
 const projectList = document.querySelector('.project-list')
 const allTodosBtn = document.querySelector('#all-todos')
+const projectName = document.querySelector('#project-name')
 //todo selectors---------------------
 const todoList = document.querySelector('.todo-list')
 const showFormBtn = document.querySelector('#show-form')
@@ -20,7 +21,7 @@ const todoBtn = document.querySelector('#todo-button')
 const todoDiv = document.querySelector('#todo-div')
 //load existing storage to display--
 displayTodo()
-
+displayProject()
 
 //add new todo function---
     function createTodo(){
@@ -41,6 +42,9 @@ displayTodo()
         saveTodoToStorage();
         displayTodo()
         reset()
+        console.log('todo data------------')
+        console.log(todoData)
+        console.table(todoData)
     }
 
 //add display---
@@ -76,10 +80,7 @@ function reset(){
     dueDate.value = ''
     todoNotes.value = ''
 }
-
 // mark todo as complete or not--UPDATE Moved to eventListener---
-
-
 //save to local storage---
 function saveTodoToStorage(){
     localStorage.setItem('todo', JSON.stringify(todoData))
@@ -99,7 +100,6 @@ todoDiv.addEventListener('click', (e)=>{
     if(e.target.classList.contains('delete')){
         const card = e.target.closest('.todo-card')
         const cardId = card.id
-
         card.remove()
         todoData = todoData.filter(todo=> todo.id !== cardId)
          saveTodoToStorage()
@@ -110,9 +110,7 @@ todoDiv.addEventListener('click', (e)=>{
     if(e.target.classList.contains('complete')){
         const card = e.target.closest('.todo-card')
         const id = card.id
-
         card.classList.toggle('todo-complete')
-
         const todo = todoData.find(t=> t.id === id)
         if(todo){
             todo.completed = !todo.completed
@@ -122,11 +120,55 @@ todoDiv.addEventListener('click', (e)=>{
 })
 
 //--------------------------------------------
-//create project
+//create project----
+function createProject(){
+   let newProject = projectTitle.value.toLowerCase().trim('')
+   if(newProject === ''){
+    return
+   }
+   
+   let createProject = {
+    projectTitle: newProject,
+    projectTodos: todoData
+   }
+   projectData.push(createProject);
 
-//display project
+   saveProjectToStorage()
+   displayProject()
+   console.log('project data---------------')
+   console.log(projectData)
+   console.table(projectData)
+}
 
-//select specific project to display todos
+//display project------
+function displayProject(){
+    projectList.innerHTML = ''
+    projectData.forEach(({projectTitle}) => {
+         projectList.innerHTML += `
+            <p id='${projectTitle}' class='project-item'>${projectTitle} <button class='delete-project'>X</button></p>
+        `
+    });
+}
 
-//view all todos from all projects
+//select specific project to display todos----
 
+//view all todos from all projects-----
+function displayAllTodos(){
+
+}
+
+//project Event listeners---------
+projectForm .addEventListener('submit',(e)=>{
+    e.preventDefault()
+    createProject()
+})
+
+projectList.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('delete-project')){
+        const card = e.target.closest('.project-item')
+        const cardId = card.id
+        card.remove()
+        projectData = projectData.filter(project=> project.projectTitle !== cardId)
+        saveProjectToStorage()
+    }
+})
